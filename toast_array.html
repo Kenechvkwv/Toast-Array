@@ -1,0 +1,94 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="Framework/materialize-v1.0.0/materialize/css/materialize.min.css">
+    <link rel="stylesheet" href="style/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="style/toast_array.css">
+    <title>Array Toasts</title>
+</head>
+
+<body>
+
+   
+
+    <div class="bg-button">
+        <button class="btn" id="starttoast">Start</button>
+        <button class="btn" id="stoptoast">Stop</button>
+    </div>
+
+    <div class="bg" id="list-head">
+
+    </div>
+
+    
+
+<script src="Framework/jquery.min.js"></script>
+<script src="Framework/materialize-v1.0.0/materialize/js/materialize.min.js"></script>
+<script src="style/fontawesome/js/all.min.js"></script>
+
+<script>
+
+    
+    $(document).ready(function(){
+        var list = ['August','Dignified','Distingue','Distinguished','Imposing','Portly','Staid','Stately','Decorous','Proper','Seemly','Grave','Grim','Po-faced','Aristocratic','Elegant','Elevated','Handsome','Lordly','Magisterial']
+        
+        var index = 0;
+
+        var toastInterval;
+
+        var ul = $('<ul>');
+
+        for (let i = 0; i<list.length; i++) {
+            var div = $('<div>').addClass('col s4');
+            var liElement = $('<li>');
+            liElement.attr('id', i).text(list[i]);
+            ul.addClass('row').append(div.append(liElement));
+        }
+
+        $('#list-head').append(ul);
+
+        $('#starttoast').click(function(){
+            toastInterval = setInterval(showToast, 3000);
+        });
+
+        $('#stoptoast').click(function(){
+            clearInterval(toastInterval);
+            time = null
+            $('li').css({backgroundColor: 'transparent'});
+        });
+
+        function showToast() {
+            do {
+                var number = 1 + Math.floor(Math.random() * 19);
+                $('li').css({backgroundColor: 'transparent'});
+                if (number < list.length){
+                    M.toast({html: list[number], classes: 'rounded'});
+                    $('#' + number).css({backgroundColor: 'pink'});
+                    console.log(number)
+                }
+            } while (number > 20);
+        }
+
+    })
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+        
+</script>
+</body>
+
+</html>
